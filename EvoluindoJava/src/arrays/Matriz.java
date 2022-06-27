@@ -27,9 +27,10 @@ public class Matriz {
 			}
 		}
 		
-		System.out.println("Media da sala: " + (somaNotas/qtdNotas)/qtdAlunos);
+		double media = somaNotas / (qtdAlunos * qtdNotas);
+		System.out.println("Media da sala: " + media);
 		
-		
+		ler.close();
 
 	}
 
