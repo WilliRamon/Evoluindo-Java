@@ -18,5 +18,5 @@ public class Equals {
 		
 	}
 	
-	//O Hashcode será abordado mais para frente
+	//O Hashcode será abordado mais para frente 
 }
