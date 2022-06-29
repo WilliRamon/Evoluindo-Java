@@ -45,5 +45,10 @@ public class ConjuntoBaguncado {
 		
 		conjunto.clear();
 		System.out.println(conjunto);
+		
+		/*
+		 * Por boas práticas, não é recomentado utilizar objetos de tipos diferentes
+		 * na mesma coleção. Porém, por motivo de estudo, desenvolvi dessa forma.
+		 */
 	}
 }
