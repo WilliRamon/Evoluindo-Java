@@ -17,7 +17,18 @@ public class InterfacesFuncionais {
 		
 		BinaryOperator<Integer> div = (x, y) -> { return x / y; };
 		System.out.println("O resultado da divisão é: " + div.apply(10, 5));
+		
+		
+		System.out.println("========================");
+		
+		BinaryOperator<String> frase = (a1, a2) -> { return a1 + a2; };
+		System.out.println(frase.apply("Olá ", "Mundo"));
 
+		System.out.println("=============================");
+		
+		BinaryOperator<Double> exemplo2 = (num1, num2) -> { return (num1 + num2) / 4; };
+		System.out.println("Exemplo 2: " + exemplo2.apply(3.5, 4.5));
+	
 	}
 
 }
