@@ -26,8 +26,22 @@ public class InterfacesFuncionais {
 
 		System.out.println("=============================");
 		
-		BinaryOperator<Double> exemplo2 = (num1, num2) -> { return (num1 + num2) / 4; };
+		BinaryOperator<Double> exemplo2 = (num1, num2) -> { 
+			double exemploSoma;
+			exemploSoma = num1 + num2;
+			return exemploSoma;
+			};
 		System.out.println("Exemplo 2: " + exemplo2.apply(3.5, 4.5));
+		
+		
+		System.out.println("======================");
+		
+		BinaryOperator<Double> exemplo3 = (num1, num2) -> {			
+			return (num1 + num2) / 2;
+		};
+		
+		System.out.println("Média: " + exemplo3.apply(10.0, 9.5));
+		
 	
 	}
 
