@@ -11,4 +11,9 @@ public class Produto extends Object{ //Por padrão, o java sempre herda a classe 
 		this.preco = preco;
 		this.desconto = desconto;
 	}
+	
+	public String toString() {
+		double precoFinal = preco * (1 - desconto);
+		return nome + " tem preço de R$ " + precoFinal;
+	}
 }
