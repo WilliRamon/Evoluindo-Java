@@ -7,8 +7,6 @@ public class Desafio {
 	
 	public static void main(String[] args) {
 		
-		Produto p = new Produto("iPad", 3235.89, 0.13);
-		
 		/*
 		 * 1. A partir do produto calcular o preço real (com desconto)
 		 * 2. Imposto Municipal: >= 2500 (8,5%) / < 2500 (Isento)
@@ -17,44 +15,31 @@ public class Desafio {
 		 * 5. Formatar: R$ 1234,56
 		 */
 		
-		//Preco com desconto
-		UnaryOperator<Double> precoDesconto = precoProduto -> precoProduto - (precoProduto * 0.13);
-		System.out.println(precoDesconto.apply(p.preco));
+		Produto p = new Produto("iPad", 3235.89, 0.13);
 		
-		//Imposto Municipal
+		UnaryOperator<Double> precoDesconto = 
+				precoProduto -> precoProduto - (precoProduto * 0.13);
 		UnaryOperator<Double> impostoMunicipal = 
 				precoProduto -> precoProduto >= 2500.00 ? precoProduto + (precoProduto * 0.085) : precoProduto;
-		System.out.println(impostoMunicipal.apply(p.preco));
-		
-		//Frete
 		UnaryOperator<Double> frete = 
-				precoProduto -> precoProduto >= 3000.00 ? 100.00 : 50.00;
-				
-		System.out.println(frete.apply(p.preco));
+				precoProduto -> precoProduto >= 3000.00 ? precoProduto + 100.00 : precoProduto + 50.00;
+		UnaryOperator<Double> arredondarValor = 
+				precoProduto -> Math.round(precoProduto*100.0)/100.0;		
+		Function<Double, String> formatarPeco = 
+				precoProduto -> "R$ " + precoProduto;
+		UnaryOperator<String> fraseSaida = 
+				precoProduto -> "O preço final do produto é " + precoProduto;
 		
-//		//Arredonda
-		UnaryOperator<Double> arredondarValor = precoProduto -> Math.round(precoProduto*100.0)/100.0;
-		System.out.println(precoDesconto.andThen(arredondarValor).apply(p.preco));
-		
-		//Formatar Preço
-		Function<Double, String> formatarPeco = precoProduto -> "R$ " + precoProduto;
-		System.out.println(formatarPeco.apply(p.preco));
-
-		System.out.println("========================");
-		
-		System.out.println("Preço do produto com desconto, com imposto, arredondado e formatado");
-		System.out.println(precoDesconto
-				.andThen(impostoMunicipal)
-				.andThen(arredondarValor)
-				.andThen(formatarPeco)
-				.apply(p.preco));
-		System.out.println("Preço do Frete");
-		System.out.println(precoDesconto
+		String valorFinal = precoDesconto
 				.andThen(impostoMunicipal)
 				.andThen(frete)
 				.andThen(arredondarValor)
 				.andThen(formatarPeco)
-				.apply(p.preco));
+				.andThen(fraseSaida)
+				.apply(p.preco);
+		
+		System.out.println(valorFinal);
+
 	}
 
 }
