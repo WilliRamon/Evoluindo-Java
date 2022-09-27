@@ -22,9 +22,9 @@ public class ImprimindoObjetos {
 			System.out.println(it.next());
 		}
 		
-		System.out.println("\nUsando Stream...");
+		System.out.println("\nUsando Stream...	 ");
 		Stream<String> stream = aprovados.stream();
-		stream.forEach(System.out::println);
+		stream.forEach(System.out::println); //Laço Interno
 	}
 
 }
