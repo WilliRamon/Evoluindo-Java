@@ -1,4 +1,4 @@
-package ExercicioForeach;
+package exercicioforeach;
 
 import java.util.ArrayList;
 

@@ -1,4 +1,4 @@
-package ExercicioForeach;
+package exercicioforeach;
 
 public class Lista {
 
