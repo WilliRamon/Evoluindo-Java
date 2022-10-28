@@ -3,7 +3,6 @@ package streams;
 import java.util.Arrays;
 import java.util.List;
 import java.util.function.Consumer;
-import java.util.function.Function;
 import java.util.stream.Stream;
 
 public class DesafioMap01 {
@@ -18,25 +17,23 @@ public class DesafioMap01 {
 
 		//INTERFACES FUNCIONAIS
 		Consumer<String> printStr = System.out::println; 
-		//Function<Integer, String> printIntStg = System.out::print;
+		Consumer<Integer> printInt = System.out::println;
 		
 		List<Integer> nums = Arrays.asList(1, 2, 3, 4, 5, 6, 7, 8, 9);
 
-		nums.stream().map(bin -> Integer.toBinaryString(bin)).forEach(printStr);
+		Stream<String> binario = nums.stream().map(bin -> Integer.toBinaryString(bin));
 		
-		/*
-		 * O que deve ser feito...
-		 * O erro que está dando é que estou invertendo a list nums direto como String.
-		 * O correto é pegar o produto do bin e passar para o inver.
-		 * Continuar amanhã
-		 */
-		nums.stream().map(inver -> new StringBuilder(inver).reverse().toString()).forEach(printStr);
+		Stream<String> invertido = binario.map(inver -> new StringBuilder(inver).reverse().toString());
+		
+		Stream<Integer> retornaInteiro = invertido.map(rtnInt -> Integer.parseInt(rtnInt, 2));
 		
 		
-		
-//		String nome = "nome";
-//		System.out.println(new StringBuilder(nome).reverse().toString());
-//			
+		//binario.forEach(printStr);
+		System.out.println("==========");
+		//invertido.forEach(printStr);
+		System.out.println("==========");
+		retornaInteiro.forEach(printInt);
+	
 	}
 	
 //FORMAS COMPRIDAS DE EXECUTAR ESSE EXERCICIO.
