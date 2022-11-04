@@ -29,10 +29,10 @@ public class DesafioFilter02 {
 			    p.getPreco() + " para " + (p.getPreco() - p.getPreco()*p.getDesconto());
 		
 		produtos.stream()
-		.filter(isDesconto)
-		.filter(isFreteGratis)
-		.map(fraseSaida)
-		.forEach(System.out::println);
+			.filter(isDesconto)
+			.filter(isFreteGratis)
+			.map(fraseSaida)
+			.forEach(System.out::println);
 		
 		
 		
