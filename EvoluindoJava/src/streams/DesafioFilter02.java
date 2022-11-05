@@ -33,9 +33,6 @@ public class DesafioFilter02 {
 			.filter(isFreteGratis)
 			.map(fraseSaida)
 			.forEach(System.out::println);
-		
-		
-		
 	}
 
 }
