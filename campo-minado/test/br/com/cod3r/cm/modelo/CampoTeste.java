@@ -1,6 +1,10 @@
 package br.com.cod3r.cm.modelo;
 
+import static org.junit.Assert.assertArrayEquals;
+import static org.junit.jupiter.api.Assertions.assertArrayEquals;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
@@ -148,6 +152,133 @@ public class CampoTeste {
 		campo.abrir();
 		
 		assertTrue(campo22.isAberto() && !campo11.isAberto());
+	}
+	
+	@Test
+	void objetivoAlcancadoNaoMinadoAberto() {
+		campo.abrir();
+		assertTrue(campo.objetivoAlcancado());
+	}
+	
+	@Test
+	void objetivoAlcancadoMinadoAberto(){
+		campo.abrir();
+		campo.minar();
+		assertFalse(campo.objetivoAlcancado());
+	}
+	
+	@Test
+	void objetivoAlcancadoMinadoMarcado() {
+		campo.minar();
+		campo.alternarMarcacao();
+		assertTrue(campo.objetivoAlcancado());
+	}
+	
+	@Test
+	void minasVizinhancaUmaMina() {
+		Campo campo22 = new Campo(2, 2);
+		Campo campo32 = new Campo(3, 2);
+		
+		campo32.minar();
+		campo.adicionarVizinho(campo22);
+		campo.adicionarVizinho(campo32);
+
+		assertEquals(1l, campo.minasNaVizinhanca());
+	}
+	
+	
+	@Test
+	void minasVizinhancaDuasMina() {
+		Campo campo22 = new Campo(2, 2);
+		Campo campo32 = new Campo(3, 2);
+		
+		campo22.minar();
+		campo32.minar();
+		campo.adicionarVizinho(campo22);
+		campo.adicionarVizinho(campo32);
+		
+		assertEquals(2l, campo.minasNaVizinhanca());
+	}
+	
+	@Test
+	void testeReiniciarCamposAberto() {
+		campo.abrir();
+		campo.minar();
+		campo.reiniciar();
+		
+		assertFalse(campo.isAberto());
+	}
+	
+	@Test
+	void testeReiniciarCamposMinado() {
+		campo.abrir();
+		campo.minar();
+		campo.reiniciar();
+		
+		assertFalse(campo.isMinado());
+	}
+
+	@Test
+	void testeReiniciarCamposMarcado() {
+		campo.minar();
+		campo.alternarMarcacao();
+		campo.reiniciar();
+		
+		assertFalse(campo.isMarcado());
+	}
+	
+	@Test
+	void testeToStringMarcado() {
+		campo.alternarMarcacao();
+		assertEquals("x", campo.toString());
+	}
+	
+	@Test
+	void testeToStringAbertoEMinado() {
+		campo.abrir();
+		campo.minar();
+		assertEquals("*", campo.toString());
+	}
+	
+	@Test
+	void testeToStringAbertoEMinasNaVizinhancaverdadeiro() {
+		
+		Campo campo22 = new Campo(2, 2);
+		Campo campo32 = new Campo(3, 2);
+		
+		campo22.minar();
+		campo32.minar();
+		campo.adicionarVizinho(campo22);
+		campo.adicionarVizinho(campo32);
+		
+		campo.abrir();
+		assertEquals("2", campo.toString());
+	}
+	
+	@Test
+	void testeToStringAbertoEMinasNaVizinhancaFalso() {
+		
+		Campo campo22 = new Campo(2, 2);
+		Campo campo32 = new Campo(3, 2);
+		
+		campo22.minar();
+		campo32.minar();
+		campo.adicionarVizinho(campo22);
+		campo.adicionarVizinho(campo32);
+		
+		campo.abrir();
+		assertNotEquals("1", campo.toString());
+	}
+	
+	@Test
+	void testeToStringAberto() {
+		campo.abrir();
+		assertEquals(" ", campo.toString());
+	}
+	
+	@Test
+	void testeToStringNenhumaAcao() {
+		assertEquals("?", campo.toString());
 	}
 	 
 }
