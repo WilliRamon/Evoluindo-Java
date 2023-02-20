@@ -81,6 +81,10 @@ public class Campo {
 		return marcado;
 	}
 	
+	public void setAberto(boolean aberto) {
+		this.aberto = aberto;
+	}
+
 	public boolean isAberto() {
 		return aberto;
 	}
