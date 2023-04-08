@@ -3,7 +3,6 @@ package jdbc;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
-import java.sql.Statement;
 
 public class FabricaConexao {
 	
@@ -17,8 +16,7 @@ public class FabricaConexao {
 			return DriverManager.getConnection(url, usuario, senha);
 
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			throw new RuntimeException(e);
 		}
 	}
 
