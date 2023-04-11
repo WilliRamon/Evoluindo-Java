@@ -11,15 +11,15 @@ public class ConsultarPessoa2 {
 
 	public static void main(String[] args) throws SQLException {
 		
-		Connection conn = FabricaConexao.getConexao();
 		Scanner in = new Scanner(System.in);
+		Connection conn = FabricaConexao.getConexao();
 		
 		System.out.println("Digite parte do nome: ");
 		String nomeDigitado = in.nextLine();		
 
-		String query = "SELECT * FROM tb_pessoas WHERE nome LIKE '%?%'";
+		String query = "SELECT * FROM tb_pessoas WHERE nome LIKE ?";
 		PreparedStatement stmt = conn.prepareStatement(query);
-		stmt.setString(1, nomeDigitado);
+		stmt.setString(1, "%"+nomeDigitado+"%");
 		
 		ResultSet resultado = stmt.executeQuery();
 		
