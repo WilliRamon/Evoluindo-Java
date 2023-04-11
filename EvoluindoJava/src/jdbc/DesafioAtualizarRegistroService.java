@@ -26,6 +26,7 @@ public class DesafioAtualizarRegistroService {
 			dao.atualizarRegistros(codigoDigitado, nomeDigitado);
 			
 			System.out.println("Atualização feita!!!");
+			
 		}else {
 			System.out.println("Nenhum registro encontrado.");
 		}
