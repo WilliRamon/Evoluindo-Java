@@ -24,6 +24,10 @@ public class Cliente {
 	@OneToOne(cascade = CascadeType.PERSIST)
 	@JoinColumn(name = "assento_id", unique = true) //Anotação especifica para campos de junção
 	private Assento assento;
+	
+	public Cliente() {
+		
+	}
 
 	public Cliente(String nome, Assento assento) {
 		this.nome = nome;
