@@ -20,6 +20,7 @@ public class ItemPedido {
 	@ManyToOne
 	private Pedido pedido;
 	
+	//Esse é o valor defaulr de fecht (...ToOne -> EAGER
 	@ManyToOne(fetch = FetchType.EAGER)
 	private Produto produto;
 	
