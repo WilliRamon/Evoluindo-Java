@@ -5,6 +5,7 @@ import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -20,7 +21,8 @@ public class Pedido {
 	@Column(nullable = false)
 	private Date data;
 	
-	@OneToMany(mappedBy = "pedido")
+	//Esse é o valor defaulr de fecht (...ToMany -> Lazy
+	@OneToMany(mappedBy = "pedido", fetch = FetchType.LAZY)
 	private List<ItemPedido> itens;
 	
 	public Pedido() {
