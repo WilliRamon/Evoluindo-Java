@@ -18,6 +18,13 @@
         <class>modelo.muitospramuitos.Sobrinho</class>
         <class>modelo.muitospramuitos.Filme</class>
         <class>modelo.muitospramuitos.Ator</class>
+        <class>modelo.composicao.Endereco</class>
+        <class>modelo.composicao.Fornecedor</class>
+        <class>modelo.composicao.Funcionario</class>
+        <class>modelo.heranca.Pessoa</class>
+        <class>modelo.heranca.PessoaFisica</class>
+        <class>modelo.heranca.Aluno</class>
+        <class>modelo.heranca.AlunoBolsista</class>
         
         <properties>
             <property name="javax.persistence.jdbc.driver" value="com.mysql.cj.jdbc.Driver"/>
