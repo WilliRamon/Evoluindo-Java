@@ -14,13 +14,13 @@ public class CalculadoraController {
 	//calculadora/subtrair?a=100&b=39
 	
 	@GetMapping("/somar/{a}/{b}")
-	public String getSomar(@PathVariable int a, @PathVariable int b) {
-		return Integer.toString(a + b);
+	public int getSomar(@PathVariable int a, @PathVariable int b) {
+		return a + b;
 	}
 	
 	@GetMapping("/subtrair")
-	public String getSubtrair(@RequestParam(name = "a", defaultValue = "0") int a,
+	public int getSubtrair(@RequestParam(name = "a", defaultValue = "0") int a,
 			@RequestParam(name = "b", defaultValue = "0") int b){
-		return Integer.toString(a - b);
+		return a - b;
 	}
 }
