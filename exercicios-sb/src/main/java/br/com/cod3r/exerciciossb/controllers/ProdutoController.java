@@ -1,7 +1,10 @@
 package br.com.cod3r.exerciciossb.controllers;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -22,5 +25,15 @@ public class ProdutoController {
 		Produto produto = new Produto(nome);
 		produtoRepository.save(produto);
 		return produto;
+	}
+	@PostMapping("/responseEntity/requestParam")
+	public ResponseEntity<Produto> novoProdutoResponseEntity(@RequestParam String nome) {
+		Produto produto = new Produto(nome);
+		 return ResponseEntity.status(HttpStatus.CREATED).body(produtoRepository.save(produto));
+	}
+	
+	@PostMapping("/responseEntity")
+	public ResponseEntity<Produto> novoProdutoTeste(@RequestBody Produto produto) {
+		 return ResponseEntity.status(HttpStatus.CREATED).body(produtoRepository.save(produto));
 	}
 }
