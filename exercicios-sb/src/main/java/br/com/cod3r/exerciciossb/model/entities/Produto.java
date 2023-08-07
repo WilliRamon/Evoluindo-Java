@@ -6,6 +6,8 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.validation.constraints.Max;
+import javax.validation.constraints.Min;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
 
@@ -17,13 +19,17 @@ public class Produto {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private int id;
 	
-	@Column(name = "nome_produto", length = 200, nullable = false)
+	@NotBlank(message = "O atributo nome_produto é obrigatório e não aceita espaço vazio")
+	@Column(name = "nome_produto", length = 200)
 	private String nome;
 	
-	@Size(max = 12, message = "O atributo preco deve conter no máximo 12 caracteres")
+//	@Size(max = 12, message = "O atributo preco deve conter no máximo 12 caracteres")
+	@Min(0)
 	@Column(name = "preco_produto", columnDefinition = "DECIMAL(10,2) DEFAULT '0.00'")
 	private double preco;
 	
+	@Min(0)
+	@Max(1)
 	private double desconto;
 	
 	public Produto() {

@@ -1,5 +1,7 @@
 package br.com.cod3r.exerciciossb.controllers;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -29,19 +31,19 @@ public class ProdutoController {
 	}
 	
 	@PostMapping("/objeto/produto")
-	public @ResponseBody Produto novoProduto(Produto produto) {
+	public @ResponseBody Produto novoProduto(@Valid Produto produto) {
 		produtoRepository.save(produto);
 		return produto;
 	}
 	
 	@PostMapping("/responseEntity/requestParam")
-	public ResponseEntity<Produto> novoProdutoResponseEntity(@RequestParam String nome) {
+	public ResponseEntity<Produto> novoProdutoResponseEntity(@Valid @RequestParam String nome) {
 		Produto produto = new Produto(nome);
 		 return ResponseEntity.status(HttpStatus.CREATED).body(produtoRepository.save(produto));
 	}
 	
 	@PostMapping("/responseEntity")
-	public ResponseEntity<Produto> novoProdutoTeste(@RequestBody Produto produto) {
+	public ResponseEntity<Produto> novoProdutoTeste(@Valid @RequestBody Produto produto) {
 		 return ResponseEntity.status(HttpStatus.CREATED).body(produtoRepository.save(produto));
 	}
 }
