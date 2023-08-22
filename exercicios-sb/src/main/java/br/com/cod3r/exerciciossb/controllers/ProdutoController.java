@@ -1,10 +1,13 @@
 package br.com.cod3r.exerciciossb.controllers;
 
+import java.util.List;
+
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -21,6 +24,16 @@ public class ProdutoController {
 	
 	@Autowired
 	private ProdutoRepository produtoRepository;
+	
+	@GetMapping
+	public Iterable<Produto> obterProdutos() {
+		return produtoRepository.findAll();
+	}
+
+	@GetMapping("/generation")
+	public ResponseEntity<Iterable<Produto>> obterProdutosGen() {
+		return ResponseEntity.ok(produtoRepository.findAll());
+	}
 
 	@PostMapping
 	public @ResponseBody Produto novoProduto(@RequestParam String nome, @RequestParam double preco,
