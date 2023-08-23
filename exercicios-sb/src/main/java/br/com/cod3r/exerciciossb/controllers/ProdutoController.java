@@ -12,6 +12,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -71,5 +72,11 @@ public class ProdutoController {
 	@PostMapping("/responseEntity")
 	public ResponseEntity<Produto> novoProdutoTeste(@Valid @RequestBody Produto produto) {
 		 return ResponseEntity.status(HttpStatus.CREATED).body(produtoRepository.save(produto));
+	}
+	
+	@PutMapping
+	public Produto alterarProduto(@Valid Produto produto) {
+		produtoRepository.save(produto);
+		return produto;
 	}
 }
