@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
@@ -76,6 +77,20 @@ public class ProdutoController {
 	
 	@PutMapping
 	public Produto alterarProduto(@Valid Produto produto) {
+		produtoRepository.save(produto);
+		return produto;
+	}
+	
+	@PutMapping("/generation")
+	public ResponseEntity<Produto> alterarProdutoGen(@Valid @RequestBody Produto produto) {
+		return produtoRepository.findById(produto.getId())
+				.map(resposta -> ResponseEntity.ok().body(produtoRepository.save(produto)))
+				.orElse(ResponseEntity.notFound().build());
+	}
+	
+	//Posso usar o mesmo métodos para duas funções HTTP
+	@RequestMapping(method = {RequestMethod.POST, RequestMethod.PUT})
+	public Produto salvarProduto(@Valid Produto produto) {
 		produtoRepository.save(produto);
 		return produto;
 	}
