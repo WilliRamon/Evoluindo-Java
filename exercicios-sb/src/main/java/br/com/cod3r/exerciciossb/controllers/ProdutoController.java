@@ -39,6 +39,11 @@ public class ProdutoController {
 		return produtoRepository.findAll();
 	}
 
+	@GetMapping("/nome/{parteNome}")
+	public Iterable<Produto> obterProdutosPorNome(@PathVariable String parteNome) {
+		return produtoRepository.findByNomeContainingIgnoreCase(parteNome);
+	}
+
 	@GetMapping("/generation")
 	public ResponseEntity<Iterable<Produto>> obterProdutosGen() {
 		return ResponseEntity.ok(produtoRepository.findAll());
