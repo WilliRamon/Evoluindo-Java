@@ -21,7 +21,7 @@ public class ProdutoController {
         return ResponseEntity.ok(service.findAll());
     }
     @GetMapping("/{id}")
-    public  ResponseEntity<Optional<Produto>> findById(@PathVariable UUID id){
+    public  ResponseEntity<Produto> findById(@PathVariable UUID id){
         return ResponseEntity.ok(service.findById(id));
     }
     @PostMapping
