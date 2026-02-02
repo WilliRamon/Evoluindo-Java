@@ -63,7 +63,6 @@ public class UsuarioService {
     }
     private Usuario toUsuario(UsuarioDTO usuarioDTO) {
         return new Usuario(
-                usuarioDTO.id(),
                 usuarioDTO.nome(),
                 usuarioDTO.email(),
                 usuarioDTO.cpf(),

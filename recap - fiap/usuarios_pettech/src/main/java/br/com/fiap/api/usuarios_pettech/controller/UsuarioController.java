@@ -2,6 +2,7 @@ package br.com.fiap.api.usuarios_pettech.controller;
 
 import br.com.fiap.api.usuarios_pettech.dto.UsuarioDTO;
 import br.com.fiap.api.usuarios_pettech.service.UsuarioService;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -12,7 +13,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping("/usuarios")
+@RequestMapping("/usuario")
 public class UsuarioController {
 
     private final UsuarioService usuarioService;
@@ -31,7 +32,7 @@ public class UsuarioController {
         return ResponseEntity.ok(usuarioService.findById(id));
     }
     @PostMapping
-    public ResponseEntity<UsuarioDTO> save(@RequestBody UsuarioDTO usuarioDTO) {
+    public ResponseEntity<UsuarioDTO> save(@Valid @RequestBody UsuarioDTO usuarioDTO) {
         return new ResponseEntity<>(usuarioService.save(usuarioDTO), HttpStatus.CREATED);
     }
     @PutMapping("/{id}")

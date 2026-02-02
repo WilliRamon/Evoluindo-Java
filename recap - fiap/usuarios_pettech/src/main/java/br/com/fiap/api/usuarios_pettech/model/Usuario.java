@@ -18,6 +18,13 @@ public class Usuario {
 
     public Usuario() {}
 
+    public Usuario(String nome, String email, String cpf, LocalDate dataNascimento) {
+        this.nome = nome;
+        this.email = email;
+        this.cpf = cpf;
+        this.dataNascimento = dataNascimento;
+    }
+
     public Usuario(long id, String nome, String email, String cpf, LocalDate dataNascimento) {
         this.id = id;
         this.nome = nome;
