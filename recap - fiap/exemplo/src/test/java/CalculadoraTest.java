@@ -35,4 +35,11 @@ class CalculadoraTest {
         int resultado = calculadora.dividir(4, 2);
         Assertions.assertEquals(2, resultado);
     }
+
+    @Test
+    void deveDividir_gerarExcecaoQuandoDividirPorZero() {
+        Assertions.assertThrows(ArithmeticException.class, () -> {
+            calculadora.dividir(4, 0);
+        });
+    }
 }
