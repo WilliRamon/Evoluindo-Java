@@ -15,7 +15,7 @@ class CalculadoraTest {
     @Test
     void deveSomar() {
         int resultado = calculadora.somar(4, 2);
-        Assertions.assertEquals(6, resultado);
+        org.assertj.core.api.Assertions.assertThat(resultado).isEqualTo(6);
     }
 
     @Test
@@ -38,8 +38,11 @@ class CalculadoraTest {
 
     @Test
     void deveDividir_gerarExcecaoQuandoDividirPorZero() {
-        Assertions.assertThrows(ArithmeticException.class, () -> {
-            calculadora.dividir(4, 0);
-        });
+        Throwable exception = org.assertj.core.api.Assertions.catchThrowable(() -> calculadora.dividir(4, 0));
+        org.assertj.core.api.Assertions.assertThat(exception).isInstanceOf(ArithmeticException.class).hasMessage("/ by zero");
+
+ //       Assertions.assertThrows(ArithmeticException.class, () -> {
+//            calculadora.dividir(4, 0);
+//        });
     }
 }
