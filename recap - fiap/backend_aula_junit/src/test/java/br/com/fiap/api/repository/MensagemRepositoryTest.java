@@ -73,7 +73,13 @@ public class MensagemRepositoryTest {
 
     @Test
     void devePermitirRemoverMensagem() {
-        //fail("Teste não implementado");
+        //Arrange
+        var id = UUID.randomUUID();
+        Mockito.doNothing().when(repository).deleteById(id);
+        //Act
+        repository.deleteById(id);
+        //Assert
+        Mockito.verify(repository, Mockito.times(1)).deleteById(id);
     }
 
     private Mensagem gerarMensagem() {
