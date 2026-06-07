@@ -9,6 +9,7 @@ import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.mockito.MockitoAnnotations;
 
+import java.util.Optional;
 import java.util.UUID;
 
 import static org.junit.jupiter.api.Assertions.fail;
@@ -32,10 +33,7 @@ public class MensagemRepositoryTest {
     @Test
     void devePermitirRegistrarMensagem() {
         //Arrange
-        var mensagem = Mensagem.builder().id(UUID.randomUUID())
-                .usuario("Willi")
-                .conteudo("Conteúdo da Mensagem")
-                .build();
+        var mensagem = gerarMensagem();
 
         Mockito.when(repository.save(mensagem)).thenReturn(mensagem);
 
@@ -52,16 +50,36 @@ public class MensagemRepositoryTest {
 
     @Test
     void devePermitirBuscarMensagem() {
-        //fail("Teste não implementado");
-    }
+        //Arrange
+        var id = UUID.randomUUID();
+        var mensagem = gerarMensagem();
+        mensagem.setId(id);
 
-    @Test
-    void devePermitirAlterarMensagem() {
-        //fail("Teste não implementado");
+        Mockito.when(repository.findById(id)).thenReturn(Optional.of(mensagem));
+
+        //Act
+        var mensagemRecebidaOpcional = repository.findById(id);
+
+        //Assert
+        org.assertj.core.api.Assertions.assertThat(mensagemRecebidaOpcional)
+                .isPresent()
+                .containsSame(mensagem);
+        mensagemRecebidaOpcional.ifPresent(mensagemRecebida -> {
+            org.assertj.core.api.Assertions.assertThat(mensagemRecebida.getId()).isEqualTo(mensagem.getId());
+            org.assertj.core.api.Assertions.assertThat(mensagemRecebida.getConteudo()).isEqualTo(mensagem.getConteudo());
+        });
+        Mockito.verify(repository, Mockito.times(1)).findById(id);
     }
 
     @Test
     void devePermitirRemoverMensagem() {
         //fail("Teste não implementado");
+    }
+
+    private Mensagem gerarMensagem() {
+        return Mensagem.builder()
+                .usuario("Willi")
+                .conteudo("Conteúdo da Mensagem")
+                .build();
     }
 }
