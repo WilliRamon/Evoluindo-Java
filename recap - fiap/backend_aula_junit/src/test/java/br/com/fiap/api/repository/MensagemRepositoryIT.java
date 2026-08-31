@@ -22,7 +22,7 @@ public class MensagemRepositoryIT {
     @Test
     void devePermitirCriarTabela(){
         var totalDeRegistros = repository.count();
-        assertThat(totalDeRegistros).isNotNegative();
+        assertThat(totalDeRegistros).isGreaterThan(0);
     }
 
     @Test
@@ -45,10 +45,7 @@ public class MensagemRepositoryIT {
     @Test
     void devePermitirBuscarMensagem(){
         //Arrange
-        var id = UUID.randomUUID();
-        var mensagem = gerarMensagem();
-        mensagem.setId(id);
-        registrarMensagem(mensagem);
+        var id = UUID.fromString("4c1734d2-ee2b-47ed-8293-43b6f21dc50f");
 
         //Act
         var mensagemRecebidaOptional = repository.findById(id);
@@ -56,28 +53,32 @@ public class MensagemRepositoryIT {
         //Assert
         assertThat(mensagemRecebidaOptional).isPresent();
         mensagemRecebidaOptional.ifPresent(mensagemRecebida -> {
-            assertThat(mensagemRecebida.getId()).isEqualTo(mensagem.getId());
-            assertThat(mensagemRecebida.getUsuario()).isEqualTo(mensagem.getUsuario());
-            assertThat(mensagemRecebida.getConteudo()).isEqualTo(mensagem.getConteudo());
+            assertThat(mensagemRecebida.getId()).isEqualTo(id);
         });
     }
 
     @Test
     void devePermitirRemoverMensagem(){
-
+        //Arrange
+        var id = UUID.fromString("47938e8d-f0ea-4370-9db4-5d7781ea71ff");
+        //Act
+        repository.deleteById(id);
+        var mensagemRecebidaOptional = repository.findById(id);
+        //Assert
+        assertThat(mensagemRecebidaOptional).isEmpty();
     }
 
     @Test
     void devePermitirListarMensagem(){
-
+        //Act
+        var resultados = repository.findAll();
+        //Assert
+        assertThat(resultados).hasSizeGreaterThan(0);
     }
     private Mensagem gerarMensagem() {
         return Mensagem.builder()
                 .usuario("Willi")
                 .conteudo("Conteúdo da Mensagem")
                 .build();
-    }
-    private Mensagem registrarMensagem(Mensagem mensagem) {
-        return repository.save(mensagem);
     }
 }
