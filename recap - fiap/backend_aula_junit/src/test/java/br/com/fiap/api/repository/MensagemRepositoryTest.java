@@ -9,6 +9,8 @@ import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.mockito.MockitoAnnotations;
 
+import java.lang.reflect.Array;
+import java.util.Arrays;
 import java.util.Optional;
 import java.util.UUID;
 
@@ -64,6 +66,7 @@ public class MensagemRepositoryTest {
         org.assertj.core.api.Assertions.assertThat(mensagemRecebidaOpcional)
                 .isPresent()
                 .containsSame(mensagem);
+
         mensagemRecebidaOpcional.ifPresent(mensagemRecebida -> {
             org.assertj.core.api.Assertions.assertThat(mensagemRecebida.getId()).isEqualTo(mensagem.getId());
             org.assertj.core.api.Assertions.assertThat(mensagemRecebida.getConteudo()).isEqualTo(mensagem.getConteudo());
@@ -80,6 +83,25 @@ public class MensagemRepositoryTest {
         repository.deleteById(id);
         //Assert
         Mockito.verify(repository, Mockito.times(1)).deleteById(id);
+    }
+
+    @Test
+    void devePermitirListarMensagem() {
+        //Arrange
+        var mensagem1 = gerarMensagem();
+        var mensagem2 = gerarMensagem();
+
+        var listaMensagens = Arrays.asList(mensagem1, mensagem2);
+        Mockito.when(repository.findAll()).thenReturn(listaMensagens);
+
+        //Act
+        var mensagensRecebidas = repository.findAll();
+
+        //Assert
+        org.assertj.core.api.Assertions.assertThat(mensagensRecebidas)
+                .hasSize(2)
+                .containsExactlyInAnyOrder(mensagem1, mensagem2);
+        Mockito.verify(repository, Mockito.times(1)).findAll();
     }
 
     private Mensagem gerarMensagem() {
