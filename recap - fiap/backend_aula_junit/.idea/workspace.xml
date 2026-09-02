@@ -5,12 +5,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="75c0314e-bd37-4af5-af8a-bfeb39269026" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/dataSources.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/sqldialects.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/test/resources/data.sql" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/br/com/fiap/api/service/MensagemService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/java/br/com/fiap/api/service/MensagemServiceTest.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/application.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/application.yaml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/br/com/fiap/api/repository/MensagemRepositoryIT.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/br/com/fiap/api/repository/MensagemRepositoryIT.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -47,6 +44,7 @@
     "JUnit.MensagemRepositoryTest.devePermitirRegistrarMensagem.executor": "Run",
     "JUnit.MensagemRepositoryTest.devePermitirRemoverMensagem.executor": "Run",
     "JUnit.MensagemRepositoryTest.executor": "Run",
+    "JUnit.MensagemServiceTest.executor": "Run",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "RunOnceActivity.git.unshallow": "true",
     "SHARE_PROJECT_CONFIGURATION_FILES": "true",
@@ -66,7 +64,7 @@
     ]
   }
 }]]></component>
-  <component name="RunManager" selected="JUnit.MensagemRepositoryIT">
+  <component name="RunManager" selected="JUnit.MensagemServiceTest">
     <configuration name="MensagemRepositoryIT" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="backend-aula-junit" />
       <extension name="coverage">
@@ -130,36 +128,35 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="MensagemRepositoryTest.devePermitirRegistrarMensagem" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="MensagemServiceTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="backend-aula-junit" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="br.com.fiap.api.repository.*" />
+          <option name="PATTERN" value="br.com.fiap.api.service.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
-      <option name="PACKAGE_NAME" value="br.com.fiap.api.repository" />
-      <option name="MAIN_CLASS_NAME" value="br.com.fiap.api.repository.MensagemRepositoryTest" />
-      <option name="METHOD_NAME" value="devePermitirRegistrarMensagem" />
-      <option name="TEST_OBJECT" value="method" />
+      <option name="PACKAGE_NAME" value="br.com.fiap.api.service" />
+      <option name="MAIN_CLASS_NAME" value="br.com.fiap.api.service.MensagemServiceTest" />
+      <option name="TEST_OBJECT" value="class" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
     <list>
+      <item itemvalue="JUnit.MensagemServiceTest" />
       <item itemvalue="JUnit.MensagemRepositoryIT" />
       <item itemvalue="JUnit.MensagemRepositoryIT.devePermitirCriarTabela" />
       <item itemvalue="JUnit.MensagemRepositoryTest.devePermitirBuscarMensagem" />
-      <item itemvalue="JUnit.MensagemRepositoryTest.devePermitirRegistrarMensagem" />
       <item itemvalue="JUnit.MensagemRepositoryTest" />
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="JUnit.MensagemServiceTest" />
         <item itemvalue="JUnit.MensagemRepositoryIT" />
         <item itemvalue="JUnit.MensagemRepositoryIT.devePermitirCriarTabela" />
         <item itemvalue="JUnit.MensagemRepositoryTest" />
         <item itemvalue="JUnit.MensagemRepositoryTest.devePermitirBuscarMensagem" />
-        <item itemvalue="JUnit.MensagemRepositoryTest.devePermitirRegistrarMensagem" />
       </list>
     </recent_temporary>
   </component>
@@ -182,7 +179,8 @@
       <workItem from="1780375095231" duration="1320000" />
       <workItem from="1780543350530" duration="2371000" />
       <workItem from="1780798091484" duration="2476000" />
-      <workItem from="1788132235769" duration="9604000" />
+      <workItem from="1788132235769" duration="10276000" />
+      <workItem from="1788317229202" duration="1530000" />
     </task>
     <servers />
   </component>
